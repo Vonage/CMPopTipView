@@ -6,20 +6,26 @@ import PackageDescription
 let package = Package(
     name: "CMPopTipView",
     platforms: [
-        .iOS("6.0")
+        .iOS(.v12) // Set minimum iOS version to 6.0
     ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "CMPopTipView",
-            targets: ["CMPopTipView"]),
+            targets: ["CMPopTipView"]
+        )
     ],
+    dependencies: [],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "CMPopTipView",
-            path: "CMPopTipView"
-        ),
+            dependencies: [],
+            path: "CMPopTipView", // Path to source directory
+            cSettings: [
+                .headerSearchPath("CMPopTipView"), // Include header search paths
+            ],
+            linkerSettings: [
+                .linkedFramework("UIKit") // Link against UIKit framework
+            ]
+        )
     ]
 )
